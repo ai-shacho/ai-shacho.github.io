@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free Cold Email First-Draft Generator + 20 Subject Lines</title>
+<meta name="description" content="Free tool: generate a personalized first cold email per lead, plus 20 subject lines that get replies. No signup, runs in your browser.">
+<style>
+  :root{--bg:#0f1115;--panel:#171a21;--line:#262b36;--fg:#e7ebf3;--mut:#9aa4b2;--acc:#5b8cff;--acc2:#27c08a}
+  *{box-sizing:border-box}
+  body{margin:0;font:15px/1.6 -apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--fg)}
+  .wrap{max-width:720px;margin:0 auto;padding:30px 20px 70px}
+  h1{font-size:24px;margin:0 0 6px} .mut{color:var(--mut)}
+  .free{display:inline-block;font-size:12px;color:var(--acc2);border:1px solid var(--line);border-radius:20px;padding:2px 10px;margin-bottom:10px}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:14px 0}
+  input{background:#0c0e12;color:var(--fg);border:1px solid var(--line);border-radius:8px;padding:9px 11px;font:inherit;width:100%}
+  button{background:var(--acc2);color:#04231a;border:0;border-radius:9px;padding:11px 16px;font-weight:700;cursor:pointer;font-size:15px}
+  button.ghost{background:transparent;color:var(--fg);border:1px solid var(--line);font-weight:500}
+  pre{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px;white-space:pre-wrap;margin-top:12px}
+  .hooks{columns:2;font-size:14px;color:#cdd5e2;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 16px}
+  @media(max-width:560px){.grid,.hooks{grid-template-columns:1fr;columns:1}}
+  .cta{display:block;margin-top:26px;padding:18px;background:linear-gradient(120deg,#16241c,#12151b);border:1px solid #244;border-radius:14px;text-decoration:none;color:#fff}
+  .cta b{color:var(--acc2)} a{color:var(--acc)}
+  h2{margin-top:30px;font-size:18px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="free">FREE · no signup · runs in your browser</div>
+  <h1>Cold Email First-Draft Generator</h1>
+  <p class="mut">Paste one lead, get a personalized first email you can actually send. Plus 20 subject lines below.</p>
+
+  <div class="grid">
+    <input id="name" placeholder="Name (e.g. Maya)">
+    <input id="company" placeholder="Company (e.g. Brewline)">
+  </div>
+  <input id="hook" placeholder="Hook — one specific detail (e.g. your oat-milk launch)" style="margin-bottom:8px">
+  <div style="display:flex;gap:8px">
+    <button onclick="gen()">Generate draft</button>
+    <button class="ghost" onclick="copyOut()">Copy</button>
+  </div>
+  <pre id="out">Your draft appears here…</pre>
+
+  <a class="cta" href="https://6280253725920.gumroad.com/l/zvrue">
+    Like this? The full <b>AI Cold Outreach Starter Kit</b> writes a tailored email for <b>every</b> lead with AI, tracks your reply rate, and includes 10 industry prompts + a deliverability checklist — one browser app, no monthly tools. <b>Get it →</b>
+  </a>
+
+  <h2>20 subject lines that get replies</h2>
+  <ul class="hooks">
+    <li>quick idea for {company}</li><li>{name}, saw your {trigger}</li><li>re: your {product}</li><li>10 min this week?</li><li>{company} + a quick thought</li><li>one thing about {company}'s growth</li><li>{name} — worth a quick look?</li><li>cutting your outreach time</li><li>for the {role} at {company}</li><li>loved {trigger}</li><li>before you buy another tool…</li><li>your {product}, my 2 cents</li><li>{name}, quick question</li><li>helping {company}'s reply rate</li><li>skip the CRM?</li><li>last note, promise</li><li>saw {trigger} — congrats</li><li>{company}: 30-second idea</li><li>not a pitch, just curious</li><li>built this for you</li>
+  </ul>
+  <p class="mut" style="margin-top:24px;font-size:13px">Built in public. <a href="https://6280253725920.gumroad.com/l/zvrue">Full kit →</a></p>
+</div>
+<script>
+function gen(){
+  var n=name.value.trim(), c=company.value.trim(), h=hook.value.trim();
+  var greet = n ? ("Hi "+n) : "Hi there";
+  var line = h ? ("I noticed "+h+(c?(" at "+c):"")+" — ") : ("I came across "+(c||"your work")+" and ");
+  out.textContent = greet+",\n\n"+line+"thought I'd reach out. I help teams like yours run personalized outreach without paying for heavy tools. Worth a 10-min look this week?\n\nBest,\n[Your name]";
+}
+function copyOut(){ navigator.clipboard.writeText(out.textContent); }
+</script>
+</body>
+</html>
