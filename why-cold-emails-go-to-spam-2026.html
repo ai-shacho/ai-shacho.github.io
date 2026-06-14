@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Why Are My Cold Emails Going to Spam in 2026? (How to Fix It)</title>
+<meta name="description" content="Cold emails landing in spam in 2026? Here's why — the new Gmail, Yahoo and Microsoft sender rules — and a step-by-step way to diagnose and fix it: SPF, DKIM, DMARC, warm-up and volume.">
+<style>
+  body{font:17px/1.7 -apple-system,Segoe UI,Roboto,sans-serif;max-width:720px;margin:0 auto;padding:32px 20px 80px;color:#1c2530}
+  h1{font-size:30px} h2{margin-top:34px} .mut{color:#6b7686}
+  ul li{margin:6px 0}
+  .box{background:#f7f9fb;border:1px solid #e6e9ee;border-radius:10px;padding:14px 18px;margin:16px 0}
+  table{width:100%;border-collapse:collapse;margin:16px 0;font-size:15.5px}
+  th,td{border:1px solid #e6e9ee;padding:9px 11px;text-align:left;vertical-align:top}
+  th{background:#f7f9fb}
+  .cta{display:block;margin:32px 0;padding:18px 20px;background:#0f1115;color:#fff;border-radius:12px;text-decoration:none}
+  .cta b{color:#27c08a} a{color:#2b6cff}
+  code{background:#f0f2f5;border-radius:4px;padding:1px 5px;font-size:14px}
+</style>
+</head>
+<body>
+<article>
+<h1>Why Are My Cold Emails Going to Spam in 2026?</h1>
+<p class="mut">If your open rates suddenly cratered — or one provider (say, every Gmail recipient) just stopped responding — it's almost never your copy. It's deliverability. Here's exactly why, and how to fix it.</p>
+
+<p>In 2024, Google and Yahoo began <strong>requiring</strong> bulk senders to authenticate their mail, keep complaints low, and offer one-click unsubscribe. In 2025, Microsoft / Outlook started routing — and increasingly <strong>rejecting</strong> — high-volume mail that isn't authenticated, and Yahoo shifted from judging your IP to judging your <strong>domain</strong>. The old playbook ("warm up an inbox and blast") quietly stopped working. If your setup isn't right, even a perfectly written email never reaches a human.</p>
+
+<h2>The 5 most common reasons (in order)</h2>
+
+<h2>1. You're missing SPF, DKIM or DMARC</h2>
+<p>These three DNS records prove your mail is really from you:</p>
+<ul>
+<li><strong>SPF</strong> — lists which servers may send for your domain.</li>
+<li><strong>DKIM</strong> — cryptographically signs each message.</li>
+<li><strong>DMARC</strong> — tells inboxes what to do when the first two fail.</li>
+</ul>
+<p>For bulk senders, all three are now effectively mandatory. Send a test to a Gmail address you own, open it, choose <code>Show original</code>, and confirm you see <code>SPF: PASS</code>, <code>DKIM: PASS</code> and <code>DMARC: PASS</code>. If any says FAIL or NONE, that's your problem.</p>
+
+<h2>2. You ramped volume too fast</h2>
+<div class="box">A brand-new domain that sends 500 emails on day one looks exactly like a spammer. New domains should start at ~20/day and ramp over 2–4 weeks. If spam started <em>after</em> you scaled, this is almost certainly it — drop back to your last safe volume and ramp slower.</div>
+
+<h2>3. You're sending from your main domain</h2>
+<p>Cold outreach should go from a separate domain or subdomain (e.g. <code>mail.yourco.com</code>). That way a reputation hit doesn't poison the domain you use for real business email.</p>
+
+<h2>4. Your content trips filters</h2>
+<ul>
+<li>Heavy HTML, multiple links, or big images on a first touch.</li>
+<li>Spam-trigger phrasing ("FREE!!!", "act now", "100% guaranteed").</li>
+<li>No clear unsubscribe / opt-out.</li>
+</ul>
+<p>First-touch cold emails should be plain text, one link maximum (ideally none), and short.</p>
+
+<h2>5. Your list is dirty</h2>
+<p>High bounce rates wreck your reputation fast. Verify your list before sending and remove invalid, role-based (<code>info@</code>, <code>sales@</code>) and risky addresses.</p>
+
+<h2>Quick diagnosis by symptom</h2>
+<table>
+<tr><th>Symptom</th><th>Most likely cause</th><th>Fix</th></tr>
+<tr><td>All mail to one provider spammed</td><td>Authentication / domain reputation</td><td>Confirm SPF/DKIM/DMARC PASS; slow down; warm up</td></tr>
+<tr><td>Spam only after scaling volume</td><td>Ramped too fast</td><td>Return to last safe volume, ramp slower</td></tr>
+<tr><td>Opens collapsed, replies were fine</td><td>Content / spam words</td><td>Plain text, one link max, no spammy phrasing</td></tr>
+<tr><td>High bounce rate</td><td>Stale/unverified list</td><td>Verify list, remove invalid addresses</td></tr>
+</table>
+
+<h2>The fix, in order</h2>
+<ol>
+<li>Authenticate: publish SPF, DKIM and DMARC, then verify all three PASS.</li>
+<li>Use a dedicated sending domain.</li>
+<li>Warm up and keep daily volume sane for your domain age.</li>
+<li>Keep complaints under <strong>0.1%</strong> and honour opt-outs.</li>
+<li>Run a pre-send check before every campaign.</li>
+</ol>
+
+<a class="cta" href="https://6280253725920.gumroad.com/l/ozlxlp">
+🔍 Want this done for you, step by step? The <b>Cold Email Deliverability Kit (2026)</b> is one browser app: an interactive SPF/DKIM/DMARC checklist, exact provider setup steps, a warm-up planner, and a pre-send audit. <b>$24 one-time →</b>
+</a>
+
+<p class="mut">Related: <a href="/cold-email-deliverability-checklist">the full 2026 deliverability checklist</a> · <a href="/how-many-cold-emails-per-day">how many cold emails to send per day</a> · <a href="/">all cold outreach guides</a>.</p>
+</article>
+</body>
+</html>
