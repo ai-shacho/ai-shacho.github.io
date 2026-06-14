@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to Get a 10/10 Mail-Tester Score for Cold Email (2026)</title>
+<meta name="description" content="A practical guide to improving your mail-tester (inbox-placement) score for cold email: what each deduction means — SPF, DKIM, DMARC, content, blacklists — and how to fix it to reach 10/10.">
+<style>
+  body{font:17px/1.7 -apple-system,Segoe UI,Roboto,sans-serif;max-width:720px;margin:0 auto;padding:32px 20px 80px;color:#1c2530}
+  h1{font-size:30px} h2{margin-top:34px} .mut{color:#6b7686}
+  ul li{margin:6px 0}
+  .box{background:#f7f9fb;border:1px solid #e6e9ee;border-radius:10px;padding:14px 18px;margin:16px 0}
+  table{width:100%;border-collapse:collapse;margin:16px 0;font-size:15.5px}
+  th,td{border:1px solid #e6e9ee;padding:9px 11px;text-align:left;vertical-align:top}
+  th{background:#f7f9fb}
+  code{background:#f0f2f5;border-radius:4px;padding:1px 5px;font-size:14px}
+  .cta{display:block;margin:32px 0;padding:18px 20px;background:#0f1115;color:#fff;border-radius:12px;text-decoration:none}
+  .cta b{color:#27c08a} a{color:#2b6cff}
+</style>
+</head>
+<body>
+<article>
+<h1>How to Get a 10/10 Mail-Tester Score (2026)</h1>
+<p class="mut">A free inbox-placement checker (like mail-tester) scores your email out of 10 and shows exactly what's dragging you down. Here's what each common deduction means and how to fix it — so cold email actually reaches the inbox.</p>
+
+<p>The way it works: you send a test email to a unique address the tool gives you, then it grades your authentication, content, and reputation. Aim for <strong>9–10/10</strong> before you run a campaign. Below are the deductions you'll actually see, in order of impact.</p>
+
+<h2>1. Authentication failures (biggest hit)</h2>
+<p>If SPF, DKIM or DMARC don't pass, you lose serious points — and real inboxes punish this even harder than the score suggests.</p>
+<ul>
+<li><strong>SPF not passing:</strong> your sending server isn't listed in your SPF record. Fix the record (one SPF record only).</li>
+<li><strong>DKIM not signing/passing:</strong> enable DKIM in your sending platform and publish the key.</li>
+<li><strong>No DMARC:</strong> publish a DMARC record at <code>_dmarc.yourdomain</code>, starting at <code>p=none</code>.</li>
+</ul>
+<div class="box">If you fix only one thing, fix authentication. It's the difference between 5/10 and 9/10 for most senders.</div>
+
+<h2>2. Content / SpamAssassin deductions</h2>
+<ul>
+<li>Spam-trigger words ("free", "guarantee", "act now", excessive punctuation/CAPS).</li>
+<li>HTML-heavy email with a poor text-to-image ratio.</li>
+<li>Broken or missing plain-text version.</li>
+<li>Lots of links, or link domains that don't match your sending domain.</li>
+</ul>
+<p>For cold first-touch: plain text, one link maximum (ideally none), short and specific.</p>
+
+<h2>3. Blacklist listings</h2>
+<p>If your domain or IP is on a blocklist, you'll lose points. Check why — usually past spam or a shared IP — and request delisting after fixing the cause. A dedicated, warmed sending domain avoids most of this.</p>
+
+<h2>4. Missing or misconfigured records</h2>
+<ul>
+<li><strong>PTR / reverse DNS</strong> not set on the sending IP (usually your provider handles it).</li>
+<li>No <strong>unsubscribe</strong> header/link for bulk sending.</li>
+</ul>
+
+<h2>The fast path to 10/10</h2>
+<ol>
+<li>Get SPF, DKIM and DMARC all passing (test to Gmail → Show original).</li>
+<li>Send plain text, one link max, no spam-trigger phrasing.</li>
+<li>Use a dedicated, warmed domain that isn't blacklisted.</li>
+<li>Add an unsubscribe option for any volume sending.</li>
+<li>Re-test until you hit 9–10, then send for real.</li>
+</ol>
+
+<a class="cta" href="https://6280253725920.gumroad.com/l/ozlxlp">
+🔍 The <b>Cold Email Deliverability Kit (2026)</b> turns this into a checklist you tick off: SPF/DKIM/DMARC setup, a pre-send audit, and a warm-up planner — one browser app. <b>$24 one-time →</b>
+</a>
+
+<p class="mut">Related: <a href="/spf-dkim-dmarc-setup-cold-email">SPF/DKIM/DMARC setup</a> · <a href="/why-cold-emails-go-to-spam-2026">why cold emails go to spam</a> · <a href="/cold-email-deliverability-checklist">deliverability checklist</a>.</p>
+</article>
+</body>
+</html>
