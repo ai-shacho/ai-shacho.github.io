@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SPF, DKIM &amp; DMARC Setup for Cold Email (2026 Step-by-Step)</title>
+<meta name="description" content="A plain-English, step-by-step guide to setting up SPF, DKIM and DMARC for cold email in 2026 — for Google Workspace, Microsoft 365 and custom SMTP — so you pass authentication and reach the inbox.">
+<style>
+  body{font:17px/1.7 -apple-system,Segoe UI,Roboto,sans-serif;max-width:720px;margin:0 auto;padding:32px 20px 80px;color:#1c2530}
+  h1{font-size:30px} h2{margin-top:34px} h3{margin-top:24px} .mut{color:#6b7686}
+  ul li{margin:6px 0}
+  .box{background:#f7f9fb;border:1px solid #e6e9ee;border-radius:10px;padding:14px 18px;margin:16px 0}
+  code{background:#f0f2f5;border-radius:4px;padding:1px 5px;font-size:14px}
+  pre{background:#0f1115;color:#e7ebf1;border-radius:8px;padding:12px 14px;overflow:auto;font-size:13.5px}
+  .cta{display:block;margin:32px 0;padding:18px 20px;background:#0f1115;color:#fff;border-radius:12px;text-decoration:none}
+  .cta b{color:#27c08a} a{color:#2b6cff}
+</style>
+</head>
+<body>
+<article>
+<h1>SPF, DKIM &amp; DMARC Setup for Cold Email (2026)</h1>
+<p class="mut">Since Gmail, Yahoo and Microsoft tightened their sender rules, these three DNS records decide whether your cold email reaches the inbox or gets rejected. Here's how to set up all three — step by step, in plain English.</p>
+
+<p>You don't need to be technical. Each record is a single line you add at whoever manages your domain's DNS (Cloudflare, GoDaddy, Namecheap, Google Domains, etc.). Changes can take up to ~24 hours to propagate.</p>
+
+<h2>What each record does</h2>
+<ul>
+<li><strong>SPF</strong> — lists which servers are allowed to send email for your domain.</li>
+<li><strong>DKIM</strong> — adds a cryptographic signature proving the message really came from you and wasn't altered.</li>
+<li><strong>DMARC</strong> — tells receiving inboxes what to do when SPF or DKIM fail, and where to send reports.</li>
+</ul>
+<div class="box">All three are now effectively mandatory for anyone sending at volume. Miss one and Gmail/Yahoo may spam-folder you; Microsoft increasingly rejects unauthenticated mail outright.</div>
+
+<h2>Step 1 — SPF</h2>
+<p>You may only have <strong>one</strong> SPF record, so merge all your senders into it. Common values:</p>
+<pre>Google Workspace:  v=spf1 include:_spf.google.com ~all
+Microsoft 365:     v=spf1 include:spf.protection.outlook.com -all
+SendGrid:          v=spf1 include:sendgrid.net ~all</pre>
+<p>If you send through more than one service, combine the includes into a single record, e.g. <code>v=spf1 include:_spf.google.com include:sendgrid.net ~all</code>.</p>
+
+<h2>Step 2 — DKIM</h2>
+<h3>Google Workspace</h3>
+<p>Admin console → Apps → Google Workspace → Gmail → <strong>Authenticate email</strong> → generate the key → publish the TXT record it gives you → turn on signing.</p>
+<h3>Microsoft 365</h3>
+<p>Microsoft 365 Defender → Policies → <strong>DKIM</strong> → enable for your domain → publish the two CNAME records shown.</p>
+<h3>Custom / SMTP provider</h3>
+<p>Get the exact DKIM CNAME/TXT records from your provider's docs (SendGrid, Postmark, Amazon SES, etc.) and add them as given.</p>
+
+<h2>Step 3 — DMARC</h2>
+<p>Add one TXT record at <code>_dmarc.yourdomain.com</code>. Start in monitor mode:</p>
+<pre>v=DMARC1; p=none; rua=mailto:you@yourdomain.com</pre>
+<p>Watch the reports for a couple of weeks, confirm your legitimate mail passes, then tighten:</p>
+<pre>p=none  →  p=quarantine  →  p=reject</pre>
+<div class="box">Don't jump straight to <code>p=reject</code>. Monitor first, or you risk blocking your own mail.</div>
+
+<h2>Step 4 — Verify it actually works</h2>
+<ol>
+<li>Send a test to a Gmail address you own. Open it → ⋮ → <strong>Show original</strong>. Confirm <code>SPF: PASS</code>, <code>DKIM: PASS</code>, <code>DMARC: PASS</code>.</li>
+<li>Run your domain through a public lookup (search "MXToolbox" or "dmarcian inspector").</li>
+<li>Send through a free inbox-placement checker (search "mail-tester") and aim for 9–10/10.</li>
+</ol>
+
+<a class="cta" href="https://6280253725920.gumroad.com/l/ozlxlp">
+🔍 Don't want to guess? The <b>Cold Email Deliverability Kit (2026)</b> walks you through SPF/DKIM/DMARC with the exact records for your provider, plus a warm-up planner and pre-send audit — one browser app. <b>$24 one-time →</b>
+</a>
+
+<p class="mut">Related: <a href="/why-cold-emails-go-to-spam-2026">why your cold emails go to spam</a> · <a href="/cold-email-deliverability-checklist">the full deliverability checklist</a> · <a href="/">all cold outreach guides</a>.</p>
+</article>
+</body>
+</html>
